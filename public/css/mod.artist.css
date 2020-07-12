@@ -1,0 +1,33 @@
+.list.artists {
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+}
+
+.list.artists .artist {
+  height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  border: 1px solid;
+  padding: 10px;
+  border-radius: 0.3rem;
+  position: relative;
+}
+
+.list.artists .artist .style {
+  height: 16px;
+  width: 16px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-bottom-right-radius: .3rem;
+  z-index: -1;
+}
+
+.artist .picture {
+  max-width: 300px;
+}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Cultiv</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+    <link rel="stylesheet" href="/css/index.css">
+    <script src='https://api.mapbox.com/mapbox-gl-js/v1.11.1/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v1.11.1/mapbox-gl.css' rel='stylesheet' />
+    {{#each css}}
+    <link rel="stylesheet" href="/css/{{this}}.css">
+    {{/each}}
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    {{#each js}}
+    <script src="/js/{{this}}.js" type="module"></script>
+    {{/each}}
+</head>
+
+<body>
+    <header id="header-main">
+        <div class="row space-between">
+            <a href="/" class="logo">Cultiv</a>
+            {{> navMain}}
+        </div>
+
+        {{#if isAdmin}}
+        {{> navAdmin}}
+        {{/if}}
+    </header>
+
+    <div id='map' style='width: 400px; height: 300px;'></div>
+    <script>
+        mapboxgl.accessToken = 'pk.eyJ1IjoiZmFubnlzYm4iLCJhIjoiY2tjajUxMmRsMWk3cTJzcGJmeWU2dWVxeiJ9.pe-D3UmYaICaW4Cw7BNwMg';
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v11',
+            center: [2.351027, 48.856669], //   [longitude,latitude]
+            zoom: 10
+        });
+    </script>
+    {{!-- {{> searchBar }} --}}
+    <main class="page">
+        {{> flashMessage }}
+        {{{body}}}
+    </main>
+
+    <footer></footer>
+
+</body>
+
+</html>
