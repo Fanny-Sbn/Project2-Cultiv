@@ -20,6 +20,45 @@ axios.get(
     );
   });
 
+
+//Requête pour tous les événements en cours (en chantier)
+
+axios.get(
+  "https://opendata.paris.fr/api/records/1.0/search/?dataset=que-faire-a-paris-&rows=0"
+)
+
+// arrondissement
+const arrondissement = ["75001","75002","75003","75004","75005","75006","75007","75008","75009","75010","75011","75012","75013","75014","75015","75016","75017","75018","75019","75020"]
+
+axios.get(
+  `https://opendata.paris.fr/api/records/1.0/search/?dataset=que-faire-a-paris-&q=(address_zipcode=${arrondissement})`
+)
+
+
+// event gratuit versus payant
+
+axios.get(
+  `https://opendata.paris.fr/api/records/1.0/search/?dataset=que-faire-a-paris-&q=(price_type="payant")
+  `
+)
+
+axios.get(
+  `https://opendata.paris.fr/api/records/1.0/search/?dataset=que-faire-a-paris-&q=(price_type="gratuit")
+  `
+)
+
+
+
+
+
+
+
+https://quefaire.paris.fr/rechercher?nR[date][%3D][]=1594591200
+
+
+https://quefaire.paris.fr/rechercher?nR[date][%3E%3D][]=1594764000
+
+
 // bout de code pour cleaner les tags
 // .then((res) => {
 //   const { data } = res;
