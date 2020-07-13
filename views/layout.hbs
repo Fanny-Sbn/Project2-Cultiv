@@ -32,15 +32,6 @@
     </header>
 
     <div id='map' style='width: 400px; height: 300px;'></div>
-    <script>
-        mapboxgl.accessToken = 'pk.eyJ1IjoiZmFubnlzYm4iLCJhIjoiY2tjajUxMmRsMWk3cTJzcGJmeWU2dWVxeiJ9.pe-D3UmYaICaW4Cw7BNwMg';
-        var map = new mapboxgl.Map({
-            container: 'map',
-            style: 'mapbox://styles/mapbox/streets-v11',
-            center: [2.351027, 48.856669], //   [longitude,latitude]
-            zoom: 10
-        });
-    </script>
     {{!-- {{> searchBar }} --}}
     <main class="page">
         {{> flashMessage }}
@@ -48,7 +39,7 @@
     </main>
 
     <footer></footer>
-
+    <script src="js/map.js"></script>
 </body>
 
 </html>
