@@ -39,6 +39,9 @@ axios
           //console.log(h[0], h[1]);
           let now = new Date();
           //console.log(now);
+          let u = moment(now).isBetween(h0, h1);
+          if (u == true) console.log(now, h[0], h[1], u);
+
           //let tomorrow = new Date("2020-08-31T10:30:00+00:00");
 
           /* if (
