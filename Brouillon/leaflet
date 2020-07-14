@@ -1,0 +1,34 @@
+var map = L.map("map").setView([48.856669, 2.351027], 12.6);
+L.tileLayer(
+  "https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}{r}.png",
+  {
+    maxZoom: 20,
+  }
+).addTo(map);
+
+// var marker = L.marker([48.856669, 2.351027]).addTo(map);
+
+axios
+  .get(
+    `https://opendata.paris.fr/api/records/1.0/search/?dataset=que-faire-a-paris-&q=&rows=1000`
+  )
+  .then((res) => {
+    let newArray = [];
+    res.data.records.forEach((event) => {
+      if (event.geometry != undefined || event.geometry != null) {
+        if (event.fields.address_city == "Paris") {
+          newArray.push(event);
+        }
+      }
+    });
+    newArray.forEach((evt) => {
+      L.marker([
+        evt.geometry.coordinates[1],
+        evt.geometry.coordinates[0],
+      ]).addTo(map);
+    });
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+

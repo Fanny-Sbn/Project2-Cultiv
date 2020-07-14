@@ -21,37 +21,37 @@ USAGE =>
 {{/compare }}
 */
 
-hbs.registerHelper("compare", function(lvalue, rvalue, options) {
+hbs.registerHelper("compare", function (lvalue, rvalue, options) {
   if (arguments.length < 3)
     throw new Error("Handlerbars Helper 'compare' needs 2 parameters");
 
   var operator = options.hash.operator || "==";
 
   var operators = {
-    "==": function(l, r) {
+    "==": function (l, r) {
       return l == r;
     },
-    "===": function(l, r) {
+    "===": function (l, r) {
       return l === r;
     },
-    "!=": function(l, r) {
+    "!=": function (l, r) {
       return l != r;
     },
-    "<": function(l, r) {
+    "<": function (l, r) {
       return l < r;
     },
-    ">": function(l, r) {
+    ">": function (l, r) {
       return l > r;
     },
-    "<=": function(l, r) {
+    "<=": function (l, r) {
       return l <= r;
     },
-    ">=": function(l, r) {
+    ">=": function (l, r) {
       return l >= r;
     },
-    typeof: function(l, r) {
+    typeof: function (l, r) {
       return typeof l == r;
-    }
+    },
   };
 
   if (!operators[operator])
@@ -68,10 +68,10 @@ hbs.registerHelper("compare", function(lvalue, rvalue, options) {
   }
 });
 
-hbs.registerHelper("format-date", function(date) {
+hbs.registerHelper("format-date", function (date) {
   return moment(date).format("YYYY-MM-DD");
 });
 
-hbs.registerHelper("toto", function(number) {
+hbs.registerHelper("toto", function (number) {
   return number === 0 ? "la tête à toto" : "pas la tête à toto";
 });
