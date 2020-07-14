@@ -12,7 +12,7 @@ function myFunction() {
           event.fields.title != null
         ) {
           allTitles.push(event.fields.title);
-          console.log(allTitles);
+          //console.log(allTitles);
         }
         const listTitles = document.getElementById("titles");
         listTitles.forEach((e) => {

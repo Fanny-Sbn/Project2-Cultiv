@@ -1,18 +1,14 @@
 const express = require("express");
 const router = express.Router();
-const userModel = require("../models/User");
-const bcrypt = require("bcrypt"); // intro to bcrypt hashing algorithm https://www.youtube.com/watch?v=O6cmuiTBZVs
+const userModel = require("./../models/User");
+const bcrypt = require("bcrypt");
 const uploader = require("./../config/cloudinary");
-
-// npm i bcrypt
-// for winfows, maybe ... npm i bcryptjs
 
 // form views
 
 router.get("/signup", (req, res) => {
-  res.render("auth/signup", { js: ["signup"] });
+  res.render("auth/signup");
 });
-
 
 router.get("/signin", (req, res) => {
   res.render("auth/signin");
@@ -21,28 +17,31 @@ router.get("/signin", (req, res) => {
 // action::Registering
 
 router.post("/signup", (req, res, next) => {
-  const user = req.body; // req.body contains the submited informations (out of post request)
-  // console.log(req.file);
-  if (req.file) user.avatar = req.file.path;
-  
+  const user = req.body;
   if (!user.email || !user.password) {
-    req.flash("error", "no empty fields here please");
-    return res.redirect("/auth/signup");
-    
+    var msg = {
+      status: "error",
+      text: "please fill email and password fields.",
+    };
+    console.log(msg);
+    return res.redirect("/auth/signup", { msg });
   } else {
     userModel
       .findOne({ email: user.email })
-      .then(dbRes => {
-        if (dbRes) { // si dbRes n'est pas null
-          req.flash("error", "sorry, email is already taken :/");
-          return res.redirect("/auth/signup");
+      .then((dbRes) => {
+        if (dbRes) {
+          var msg = {
+            status: "error",
+            text:
+              "this email adress is already registred. Sign-up or use a different email address",
+          };
+          console.log(msg);
+          return res.render("auth/signup", { msg });
         }
 
-        const salt = bcrypt.genSaltSync(10); 
+        const salt = bcrypt.genSaltSync(10);
         const hashed = bcrypt.hashSync(user.password, salt);
-        // generates a unique random hashed password
-        user.password = hashed; // new user is ready for db
-    
+        user.password = hashed;
 
         userModel.create(user).then(() => res.redirect("/auth/signin"));
       })
@@ -54,36 +53,30 @@ router.post("/signup", (req, res, next) => {
 
 router.post("/signin", (req, res, next) => {
   const user = req.body;
-
+  //might be useless bc of REQUIRE property in form
   if (!user.email || !user.password) {
-    // one or more field is missing
-    req.flash("error", "wrong credentials");
     return res.redirect("/auth/signin");
   }
 
   userModel
     .findOne({ email: user.email })
-    .then(dbRes => {
+    .then((dbRes) => {
       if (!dbRes) {
-        // no user found with this email
-        req.flash("error", "wrong credentials");
-        return res.redirect("/auth/signin");
+        var msg = { status: "error", text: "wrong email" };
+        //console.log(msg);
+        return res.render("auth/signin", { msg });
       }
-      // user has been found in DB !
       if (bcrypt.compareSync(user.password, dbRes.password)) {
-        // encryption says : password match success
-        const { _doc: clone } = { ...dbRes }; // make a clone of db user
+        const { _doc: clone } = { ...dbRes };
 
-        delete clone.password; // remove password from clone
-        // console.log(clone);
+        delete clone.password;
 
-        req.session.currentUser = clone; // user is now in session... until session.destroy
-        return res.redirect("/admin");
-        
+        req.session.currentUser = clone;
+        return res.redirect("/");
       } else {
-        // encrypted password match failed
-        req.flash("error", "wrong credentials");
-        return res.redirect("/auth/signin");
+        var msg = { status: "error", text: "wrong password" };
+        //console.log(msg);
+        return res.render("auth/signin", { msg });
       }
     })
     .catch(next);
