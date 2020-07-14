@@ -55,7 +55,7 @@ app.use(require("./middlewares/exposeLoginStatus"));
 // }
 
 // ROUTING
-app.use("/", require("./routes"));
+app.use("/", require("./routes/"));
 app.use("/auth", require("./routes/auth"));
 
 // export the app (check the import @ ./bin/www)
