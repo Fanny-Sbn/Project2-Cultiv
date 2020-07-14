@@ -1,16 +1,16 @@
+<h1>Welcome Back !</h1>
+
+{{#if msg }}
+<p class="message {{msg.status}}">{{msg.text}}</p>
+{{/if}}
 <form method="post" action="/auth/signin" class="form">
-    <h1 class="title">Signin</h1>
+    <label for="email">Email</label>
+    <input class="input" name="email" type="text" value="test@cultiv.com">
 
-    <label class="label" for="email">Email</label>
-    <input class="input" name="email" type="text" value="admin@artistify.com">
-
-    <label class="label" for="password">Password</label>
+    <label for="password">Password</label>
     <input class="input" name="password" type="password" value="12345">
 
     <button class="btn">Enter</button>
-
+    <hr>
+    <p>Don't have an account yet ? <a href="/auth/signup" class="link">Sign Up</a></p>
 </form>
-<hr>
-<p>
-    No account yet ? <a class="link" href="/auth/signup">Please signup here !</a>
-</p>

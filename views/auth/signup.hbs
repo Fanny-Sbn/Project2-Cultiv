@@ -1,16 +1,23 @@
-<form method="post" action="/auth/signup" class="form" enctype="multipart/form-data">
+<h1>Welcome to cultiv, if you want to fully enjoy the experience please signup</h1>
+{{#if msg}}
+<p class="message {{msg.status}}">{{msg.text}}</p>
+{{/if}}
+<form method="post" action="/auth/signup" class="form">
     <h1 class="title">Signup</h1>
-    <label for="pseudo">Email</label>
-    <input class="input" name="pseudo" type="text" value="fooBar">
+
+    <label for="pseudo">Pseudo</label>
+    <input id="pseudo" name="pseudo" type="text" class="input" placeholder="Biceps" required value="gui">
+
 
     <label for="email">Email</label>
-    <input class="input" name="email" type="text" value="test@yopmail.com">
+    <input id="email" name="email" type="email" class="input" placeholder="albert.biceps@gmail.com" required
+        value="yo@gui.com">
 
     <label for="password">Password</label>
-    <input class="input" name="password" type="password" value="12345">
-    <button class="btn">Enter</button>
+    <input id="password" name="password" type="password" class="input" placeholder="••••••" required
+        value="1234">
+
+    <button class="btn">Create Account</button>
     <hr>
-    <p>
-        Already have an account ? <a class="link" href="/auth/signin">Please signin !</a>
-    </p>
+    <p>Already have an account ? <a href="/auth/signin" class="link">Sign In</a></p>
 </form>
