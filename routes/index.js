@@ -3,7 +3,7 @@ var moment = require("moment");
 const router = new express.Router();
 
 router.get("/", (req, res) => {
-  res.render("home", { js: ["map","clean"] });
+  res.render("home", { js: ["map", "clean", "filter"] });
 });
 
 module.exports = router;
