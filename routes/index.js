@@ -3,7 +3,7 @@ var moment = require("moment");
 const router = new express.Router();
 
 router.get("/", (req, res) => {
-  res.render("layout");
+  res.render("home");
 });
 
 module.exports = router;
