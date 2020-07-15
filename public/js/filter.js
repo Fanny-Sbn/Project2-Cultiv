@@ -32,7 +32,7 @@ function isNow(cleanedOccurences) {
 function myFunction(query = "") {
   const res = axios
     .get(
-      `https://opendata.paris.fr/api/records/1.0/search/?dataset=que-faire-a-paris-&q=&rows=2000${query}`
+      `https://opendata.paris.fr/api/records/1.0/search/?dataset=que-faire-a-paris-&q=&rows=300${query}`
     )
     .then((res) => {
       let data = [];
@@ -59,7 +59,7 @@ function myFunction(query = "") {
         return modifiedEvent;
       });
       console.log("FINAL ARRAY WITH ALL EVENTS", finalArr);
-      console.log("LENGTH OF ALL EVENTS", finalArr.length);
+      //console.log("LENGTH OF ALL EVENTS", finalArr.length);
       let allTitles = [];
       let eventNow = 0;
       let eventNotNow = 0;
@@ -69,14 +69,17 @@ function myFunction(query = "") {
           event.title != null
         ) {
           event.isNow ? eventNow++ : eventNotNow++;
-          console.log("EVENT NOW", eventNow);
-          console.log("EVENT NOT NOW", eventNotNow);
+          //console.log("EVENT NOW", eventNow);
+          //console.log("EVENT NOT NOW", eventNotNow);
           if (status.now && event.isNow) {
-            allTitles.push(event.title);
+            console.log("true", status.now, event.isNow);
+            //allTitles.push(event.title);
           } else {
-            allTitles.push(event.title);
+            console.log("false", status.now, event.isNow);
+
+            //allTitles.push(event.title);
           }
-          console.log(allTitles);
+          //console.log(allTitles);
         }
         const listTitles = document.getElementById("titles");
         listTitles.innerHTML = "";
