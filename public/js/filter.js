@@ -1,26 +1,11 @@
+import { loadAllItems} from "./map.js";
+
 let status = {
   gratuit: false,
   arrondissement: [],
   now: true,
 };
-mapboxgl.accessToken =
-  "pk.eyJ1IjoiZmFubnlzYm4iLCJhIjoiY2tjajUxMmRsMWk3cTJzcGJmeWU2dWVxeiJ9.pe-D3UmYaICaW4Cw7BNwMg";
-var map = new mapboxgl.Map({
-  container: "map",
-  style: "mapbox://styles/mapbox/streets-v11",
-  center: [2.351027, 48.856669], //   [longitude,latitude]
-  zoom: 11,
-});
-//Load map with events
-map.addControl(new mapboxgl.NavigationControl(), "bottom-right").addControl(
-  new mapboxgl.GeolocateControl({
-    positionOptions: {
-      enableHighAccuracy: true,
-    },
-    trackUserLocation: true,
-  }),
-  "bottom-right"
-);
+
 function checkStatus() {
   let query = "";
   if (status.gratuit == true) query += '&q=(price_type="gratuit")';
@@ -30,7 +15,6 @@ function checkStatus() {
     query += q;
   });
   myFunction(query);
-  //getAllItems(query);
 }
 function cleanOccurrence(occurrences) {
   let plageshoraires = occurrences.split(";");
@@ -70,7 +54,7 @@ function myFunction(query = "") {
           }
         }
       });
-      let finalArr = data.map((e) => {
+      let modifiedArr = data.map((e) => {
         let geometry = e.geometry;
         let { fields } = e;
         let { occurrences, ...rest } = fields;
@@ -83,21 +67,21 @@ function myFunction(query = "") {
         };
         return modifiedEvent;
       });
-      let finalFinal = finalArr;
+      let finalArr = modifiedArr;
       if (status.now) {
-        finalFinal = finalArr.filter((event) => {
+        finalArr = modifiedArr.filter((event) => {
           return event.isNow;
         });
       }
       const listTitles = document.getElementById("titles");
       listTitles.innerHTML = "";
-      finalFinal.forEach((e) => {
+      finalArr.forEach((e) => {
         let li = document.createElement(`li`);
         li.innerHTML = e.title;
         listTitles.append(li);
       });
-      console.log("final final final array", finalFinal.length);
-      const items = finalFinal.map((event) => {
+      console.log("final array", finalArr.length);
+      const items = finalArr.map((event) => {
         return {
           type: "Feature",
           geometry: {
@@ -142,15 +126,3 @@ allArrondissements.forEach((arrondissement) =>
     checkStatus();
   })
 );
-function loadAllItems(items) {
-  console.log(items);
-  let allPreviousMarkers = document.querySelectorAll(".marker");
-  allPreviousMarkers.forEach((marker) => marker.remove());
-  items.forEach((marker) => {
-    const marker__container = document.createElement("div");
-    marker__container.className = "marker";
-    new mapboxgl.Marker(marker__container)
-      .setLngLat(marker.geometry.coordinates)
-      .addTo(map);
-  });
-}
