@@ -1,9 +1,11 @@
-import { loadAllItems} from "./map.js";
+import { loadAllItems } from "./map.js";
 
 let status = {
   gratuit: false,
   arrondissement: [],
+  tags: [],
   now: true,
+  date: null,
 };
 
 function checkStatus() {
@@ -14,6 +16,11 @@ function checkStatus() {
     let q = `${prefix} address_zipcode="${e}"`;
     query += q;
   });
+  status.tags.forEach((e, i) => {
+    let prefix = i === 0 ? "&q=" : `OR`;
+    let q = `${prefix} tags="${e}"`;
+    query += q;
+  });
   myFunction(query);
 }
 function cleanOccurrence(occurrences) {
@@ -22,15 +29,18 @@ function cleanOccurrence(occurrences) {
 }
 function isNow(cleanedOccurences) {
   let u = false;
+  let v = false;
   cleanedOccurences.forEach((h) => {
     let h0 = new Date(h[0]);
     let h1 = new Date(h[1]);
     let now = new Date();
     let isNow = moment(now).isBetween(h0, h1);
+    let isDate = moment(status.date).isBetween(h0, h1);
     if (isNow) u = true;
-    //if (u == true) console.log(now, h[0], h[1], u);
+    if (isDate) v = true;
+    console.log(status.date, v);
   });
-  return u;
+  return { u, v };
 }
 
 function myFunction(query = "") {
@@ -62,7 +72,9 @@ function myFunction(query = "") {
         let cleanedOccurences = cleanOccurrence(occurrences);
         let modifiedEvent = {
           occurrences: cleanedOccurences,
-          isNow: isNow(cleanedOccurences),
+          isNow: isNow(cleanedOccurences).u,
+          isDate: isNow(cleanedOccurences).v,
+
           ...rest,
           geometry,
         };
@@ -72,6 +84,11 @@ function myFunction(query = "") {
       if (status.now) {
         finalArr = modifiedArr.filter((event) => {
           return event.isNow;
+        });
+      }
+      if (status.date != null) {
+        finalArr = modifiedArr.filter((event) => {
+          return event.isDate;
         });
       }
       const listTitles = document.getElementById("titles");
@@ -85,7 +102,7 @@ function myFunction(query = "") {
       const items = finalArr.map((event) => {
         return {
           type: "Feature",
-          source:"items",
+          source: "items",
           geometry: {
             type: "Point",
             coordinates: [
@@ -97,9 +114,8 @@ function myFunction(query = "") {
             id: event.id,
             place: event.address_name,
             title: event.title,
-            img : event.cover_url,
-            dateDescription : event.date_description
-
+            img: event.cover_url,
+            dateDescription: event.date_description,
           },
         };
       });
@@ -132,3 +148,29 @@ allArrondissements.forEach((arrondissement) =>
     checkStatus();
   })
 );
+
+let allTags = document.querySelectorAll(".tags");
+allTags.forEach((tags) =>
+  tags.addEventListener("change", (event) => {
+    if (event.target.checked) {
+      status.tags.push(tags.id);
+    } else {
+      let newArr = status.tags.filter((tag) => tag != tags.id);
+      status.tags = newArr;
+    }
+    console.log(status.tags);
+    checkStatus();
+  })
+);
+
+//Date
+
+let inputDate = document.getElementsByClassName("date")[0];
+let inputNow = document.getElementById("now");
+inputDate.addEventListener("change", (e) => {
+  status.date = e.target.value;
+  inputNow.checked = false;
+  console.log(status.date);
+  checkStatus();
+  //if (u == true) console.log(now, h[0], h[1], u);
+});
