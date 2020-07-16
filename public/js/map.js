@@ -15,7 +15,7 @@ var map = new mapboxgl.Map({
 });
 
 //Load map with events
-/* map.addControl(new mapboxgl.NavigationControl(), "bottom-right").addControl(
+map.addControl(new mapboxgl.NavigationControl(), "bottom-right").addControl(
   new mapboxgl.GeolocateControl({
     positionOptions: {
       enableHighAccuracy: true,
@@ -23,7 +23,7 @@ var map = new mapboxgl.Map({
     trackUserLocation: true,
   }),
   "bottom-right"
-); */
+);
 
 export function loadAllItems(items) {
   let allPreviousMarkers = document.querySelectorAll(".marker");
