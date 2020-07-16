@@ -46,7 +46,7 @@ function isNow(cleanedOccurences) {
 function myFunction(query = "") {
   const res = axios
     .get(
-      `https://opendata.paris.fr/api/records/1.0/search/?dataset=que-faire-a-paris-&q=&rows=2000${query}`
+      `https://opendata.paris.fr/api/records/1.0/search/?dataset=que-faire-a-paris-&q=&rows=100${query}`
     )
     .then((res) => {
       let data = [];
@@ -93,8 +93,18 @@ function myFunction(query = "") {
       }
       const listTitles = document.getElementById("titles");
       listTitles.innerHTML = "";
+const userEvents = document.getElementById("user").dataset.user
+const userEventsFinal = userEvents.split(",")
+
       finalArr.forEach((e) => {
         let li = document.createElement(`li`);
+        let isFavorite = false
+        userEventsFinal.forEach(userEvent =>{
+          if (userEvent === e.id) {
+            isFavorite = true
+          }
+        })
+        console.log("IS FAVORITE", isFavorite);
         li.innerHTML =
           `<a href =/evenement/${e.id}>` +
           e.title +
@@ -102,7 +112,7 @@ function myFunction(query = "") {
           "<br>" +
           `<img class="img-popup" src=${e.cover_url}>` +
           "<br>" +
-          `<img data-evt-id="${e.id}" class="img-fav" src="../img/1.png">` +
+          `<i data-evt-id="${e.id}" class="img-fav far fa-heart"></i>` +
           "<br>" +
           "<p>" +
           e.address_name +
@@ -135,13 +145,9 @@ function myFunction(query = "") {
           },
         };
       });
-      loadAllItems(items);
+      //loadAllItems(items);
       let inputFav = document.querySelectorAll(".img-fav");
-      inputFav.forEach((fav) => (fav.onclick = addToFav));
-      function addToFav(e) {
-        console.log(e.target);
-        console.log(e.target.dataset.evtId);
-      }
+      inputFav.forEach((fav) => (fav.onclick = changeFavStatus));
     })
     .catch((err) => {
       console.log(err);
@@ -196,3 +202,20 @@ inputDate.addEventListener("change", (e) => {
   checkStatus();
   //if (u == true) console.log(now, h[0], h[1], u);
 });
+
+function changeFavStatus(e) {
+  console.log(e);
+  if (e.target.classList.contains("far")) {
+    axios.post('/add-favorite', { event: e.target.dataset.evtId })
+      .then(modifiedUser => console.log(modifiedUser))
+      .catch(err => console.log(err))
+    e.target.classList.replace("far", "fas");
+  } else {
+    axios.post('/remove-favorite', { event: e.target.dataset.evtId })
+      .then(modifiedUser => console.log(modifiedUser))
+      .catch(err => console.log(err))
+    e.target.classList.replace("fas", "far");
+    
+  }
+  console.log(e.target.dataset.evtId);
+}

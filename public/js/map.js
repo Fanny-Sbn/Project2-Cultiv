@@ -39,25 +39,6 @@ export function loadAllItems(items) {
 
     new mapboxgl.Marker(marker_content)
       .setLngLat(marker.geometry.coordinates)
-<<<<<<< HEAD
-      .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
-        .setHTML(`<img class="img-popup" src="${marker.properties.img}">` +
-          "<br>" +
-          `<a href ="/evenement/${marker.properties.id}">` +
-          marker.properties.title +
-          "</a>" +
-          "<br>" +
-          `<img data-evt-id="${marker.properties.id}" class="img-fav" src="../img/1.png">` +
-          "<br>" +
-          "<p>" +
-          marker.properties.place +
-          "</p>" +
-          "<br>" +
-          "<p>" +
-          marker.properties.dateDescription +
-          "</p>"))
-      .addTo(map);
-=======
       .setPopup(
         new mapboxgl.Popup({ offset: 25 }) // add popups
           .setHTML(
@@ -81,7 +62,6 @@ export function loadAllItems(items) {
       .addTo(map);
 
     //console.log(marker.properties.title);
->>>>>>> 549a4cd76272b105121ac599336558c16d221104
   });
   //enlever le loader
 }

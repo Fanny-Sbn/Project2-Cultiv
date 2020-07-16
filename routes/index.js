@@ -5,12 +5,23 @@ const axios = require('axios');
 const userModel = require("./../models/User");
 
 router.get("/", (req, res) => {
-  res.render("home", { js: ["map", "filter"] });
+  let currentUser;
+  if (req.session.currentUser){
+    userModel.findById(req.session.currentUser._id)
+    .then(dbres => {
+      currentUser=dbres.fav 
+      res.render("home", { js: ["map", "filter"], user : currentUser});
+    })
+  }else{
+    currentUser = null;  
+    res.render("home", { js: ["map", "filter"], user : currentUser});
+  }
 });
 
 router.get("/evenements/mydashboard", (req, res) => {
+  console.log(req.session.currentUser)
   userModel
-    .find()
+    .findById(req.session.currentUser._id)
     .then(function (dbRes) {
       res.render("dashboard", { UserInfo: dbRes })
     })
@@ -19,7 +30,23 @@ router.get("/evenements/mydashboard", (req, res) => {
     });
 });
 
+router.post("/add-favorite", (req, res) => {
+  userModel
+    .findByIdAndUpdate(req.session.currentUser._id, { $push: { fav: req.body.event } }, { new: true })
+    .then(function (dbRes) { res.json(dbRes) })
+    .catch(function (error) {
+      console.log(error);
+    });
+});
 
+router.post("/remove-favorite", (req, res) => {
+  userModel
+    .findByIdAndUpdate(req.session.currentUser._id, { $pull: { fav: req.body.event } }, { new: true })
+    .then(function (dbRes) { res.json(dbRes) })
+    .catch(function (error) {
+      console.log(error);
+    });
+});
 
 
 router.get("/evenement/:id", (req, res) => {
