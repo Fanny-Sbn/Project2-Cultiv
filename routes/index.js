@@ -3,6 +3,7 @@ var moment = require("moment");
 const router = new express.Router();
 const axios = require('axios');
 const userModel = require("./../models/User");
+const protectRoute = require("./../middlewares/protectRoute.js")
 
 router.get("/", (req, res) => {
   let currentUserFav;
@@ -20,7 +21,7 @@ router.get("/", (req, res) => {
   }
 });
 
-router.get("/evenements/mydashboard", (req, res) => {
+router.get("/evenements/mydashboard",protectRoute, (req, res) => {
   let query = "";
   userModel
     .findById(req.session.currentUser._id)
@@ -50,7 +51,7 @@ router.get("/evenements/mydashboard", (req, res) => {
     });
 });
 
-router.post("/add-favorite", (req, res) => {
+router.post("/add-favorite",protectRoute, (req, res) => {
   userModel
     .findByIdAndUpdate(req.session.currentUser._id, { $push: { fav: req.body.event } }, { new: true })
     .then(function (dbRes) { res.json(dbRes) })
@@ -59,7 +60,7 @@ router.post("/add-favorite", (req, res) => {
     });
 });
 
-router.post("/remove-favorite", (req, res) => {
+router.post("/remove-favorite",protectRoute, (req, res) => {
   userModel
     .findByIdAndUpdate(req.session.currentUser._id, { $pull: { fav: req.body.event } }, { new: true })
     .then(function (dbRes) { res.json(dbRes) })
