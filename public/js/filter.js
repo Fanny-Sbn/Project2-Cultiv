@@ -32,6 +32,7 @@ function isNow(cleanedOccurences) {
   });
   return u;
 }
+
 function myFunction(query = "") {
   const res = axios
     .get(
@@ -84,6 +85,7 @@ function myFunction(query = "") {
       const items = finalArr.map((event) => {
         return {
           type: "Feature",
+          source:"items",
           geometry: {
             type: "Point",
             coordinates: [
@@ -92,7 +94,12 @@ function myFunction(query = "") {
             ],
           },
           properties: {
-            eventID: event.id,
+            id: event.id,
+            place: event.address_name,
+            title: event.title,
+            img : event.cover_url,
+            dateDescription : event.date_description
+
           },
         };
       });
@@ -122,7 +129,6 @@ allArrondissements.forEach((arrondissement) =>
       );
       status.arrondissement = newArr;
     }
-    console.log(status.arrondissement);
     checkStatus();
   })
 );
