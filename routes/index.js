@@ -5,25 +5,45 @@ const axios = require('axios');
 const userModel = require("./../models/User");
 
 router.get("/", (req, res) => {
-  let currentUser;
-  if (req.session.currentUser){
+  let currentUserFav;
+  if (req.session.currentUser) {
+    let connected = true;
     userModel.findById(req.session.currentUser._id)
-    .then(dbres => {
-      currentUser=dbres.fav 
-      res.render("home", { js: ["map", "filter"], user : currentUser});
-    })
-  }else{
-    currentUser = null;  
-    res.render("home", { js: ["map", "filter"], user : currentUser});
+      .then(dbres => {
+        currentUserFav = dbres.fav
+        res.render("home", { js: ["map", "filter"], favoris: currentUserFav, connected });
+      })
+  } else {
+    let connected = false;
+    currentUserFav = null;
+    res.render("home", { js: ["map", "filter"], favoris: currentUserFav, connected });
   }
 });
 
 router.get("/evenements/mydashboard", (req, res) => {
-  console.log(req.session.currentUser)
+  let query = "";
   userModel
     .findById(req.session.currentUser._id)
     .then(function (dbRes) {
-      res.render("dashboard", { UserInfo: dbRes })
+      let allFav = dbRes.fav;
+      
+      function updateQuery(arg) {
+        arg.forEach((e) => {
+          let prefix = "&q=";
+          let q = `${prefix}id=${e}`;
+          query += q;
+        });
+      }
+      updateQuery(allFav);
+    })
+    .catch(function (error) {
+      console.log(error);
+    })
+    axios.get(`https://opendata.paris.fr/api/records/1.0/search/?dataset=que-faire-a-paris-${query}`)
+    .then(function (response) {
+      let data = response.data.records;
+      console.log(data);
+      res.render("dashboard", { data })
     })
     .catch(function (error) {
       console.log(error);

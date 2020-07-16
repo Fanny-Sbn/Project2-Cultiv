@@ -93,37 +93,60 @@ function myFunction(query = "") {
       }
       const listTitles = document.getElementById("titles");
       listTitles.innerHTML = "";
-const userEvents = document.getElementById("user").dataset.user
-const userEventsFinal = userEvents.split(",")
+      const userEventsFav = document.getElementById("userFav").dataset.favoris;
+      const userEventsFavArr = userEventsFav.split(",");
+      const userConnexion = document.getElementById("connexion").dataset.connected;
+      console.log(typeof userConnexion);
 
       finalArr.forEach((e) => {
         let li = document.createElement(`li`);
-        let isFavorite = false
-        userEventsFinal.forEach(userEvent =>{
+        let isFavorite = false;
+        let classFavorite = "far";
+        userEventsFavArr.forEach(userEvent => {
           if (userEvent === e.id) {
-            isFavorite = true
+            isFavorite = true;
+            classFavorite = "fas";
           }
         })
         console.log("IS FAVORITE", isFavorite);
-        li.innerHTML =
-          `<a href =/evenement/${e.id}>` +
-          e.title +
-          "</a>" +
+
+        if (userConnexion === "true") {
+          li.innerHTML =
+            `<a href =/evenement/${e.id}>` +
+            e.title +
+            "</a>" +
+            "<br>" +
+            `<img class="img-popup" src=${e.cover_url}>` +
+            "<br>"+
+              `<i data-evt-id="${e.id}" class="img-fav ${classFavorite} fa-heart"></i>`+
           "<br>" +
-          `<img class="img-popup" src=${e.cover_url}>` +
-          "<br>" +
-          `<i data-evt-id="${e.id}" class="img-fav far fa-heart"></i>` +
-          "<br>" +
-          "<p>" +
-          e.address_name +
-          "</p>" +
-          "<br>" +
-          "<p>" +
-          e.date_description +
-          "</p>";
+            "<p>" +
+            e.address_name +
+            "</p>" +
+            "<br>" +
+            "<p>" +
+            e.date_description +
+            "</p>";
+        } else {
+          li.innerHTML =
+            `<a href =/evenement/${e.id}>` +
+            e.title +
+            "</a>" +
+            "<br>" +
+            `<img class="img-popup" src=${e.cover_url}>` +
+            "<br>" +
+            "<p>" +
+            e.address_name +
+            "</p>" +
+            "<br>" +
+            "<p>" +
+            e.date_description +
+            "</p>";
+        }
 
         listTitles.append(li);
       });
+
       //console.log("final array", finalArr.length);
       const items = finalArr.map((event) => {
         return {
@@ -215,7 +238,11 @@ function changeFavStatus(e) {
       .then(modifiedUser => console.log(modifiedUser))
       .catch(err => console.log(err))
     e.target.classList.replace("fas", "far");
-    
+
   }
   console.log(e.target.dataset.evtId);
 }
+
+
+
+
