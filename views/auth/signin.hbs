@@ -1,16 +1,17 @@
-<h1>Welcome Back !</h1>
 
-{{#if msg }}
-<p class="message {{msg.status}}">{{msg.text}}</p>
-{{/if}}
+
 <form method="post" action="/auth/signin" class="form">
+<h1 class="center">Content de vous retrouver ! <br> <span class="light">Connectez-vous</span></h1>
+{{#if msg }}
+<p class="message center bold {{msg.status}}">{{msg.text}}</p>
+{{/if}}
     <label for="email">Email</label>
     <input class="input" name="email" type="text" value="test@cultiv.com">
 
-    <label for="password">Password</label>
+    <label for="password">Mot de passe</label>
     <input class="input" name="password" type="password" value="1234">
 
-    <button class="btn">Enter</button>
+    <button class="btn">Envoyer</button>
     <hr>
-    <p>Don't have an account yet ? <a href="/auth/signup" class="link">Sign Up</a></p>
+    <p>Pas encore de compte ? <a href="/auth/signup" class="bold">Créez un compte.</a></p>
 </form>

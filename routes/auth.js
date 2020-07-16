@@ -21,7 +21,7 @@ router.post("/signup", (req, res, next) => {
   if (!user.email || !user.password) {
     var msg = {
       status: "error",
-      text: "please fill email and password fields.",
+      text: "Renseignez votre email et votre mot de passe.",
     };
     console.log(msg);
     return res.redirect("/auth/signup", { msg });
@@ -33,7 +33,7 @@ router.post("/signup", (req, res, next) => {
           var msg = {
             status: "error",
             text:
-              "this email adress is already registred. Sign-up or use a different email address",
+              "Cette adresse email est déjà liée à un compte. Connectez-vous ou utilisez un email différent !",
           };
           console.log(msg);
           return res.render("auth/signup", { msg });
@@ -62,7 +62,7 @@ router.post("/signin", (req, res, next) => {
     .findOne({ email: user.email })
     .then((dbRes) => {
       if (!dbRes) {
-        var msg = { status: "error", text: "wrong email" };
+        var msg = { status: "error", text: "Email inconnu" };
         //console.log(msg);
         return res.render("auth/signin", { msg });
       }
@@ -74,7 +74,7 @@ router.post("/signin", (req, res, next) => {
         req.session.currentUser = clone;
         return res.redirect("/");
       } else {
-        var msg = { status: "error", text: "wrong password" };
+        var msg = { status: "error", text: "Mot de passe incorrect" };
         //console.log(msg);
         return res.render("auth/signin", { msg });
       }

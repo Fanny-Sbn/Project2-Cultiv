@@ -1,23 +1,22 @@
-<h1>Welcome to cultiv, if you want to fully enjoy the experience please signup</h1>
-{{#if msg}}
-<p class="message {{msg.status}}">{{msg.text}}</p>
-{{/if}}
-<form method="post" action="/auth/signup" class="form">
-    <h1 class="title">Signup</h1>
 
+<form method="post" action="/auth/signup" class="form">
+    <h1 class="center">Bienvenue sur Cultiv ! <br> <span class="light">Créer un compte</span></h1>
+{{#if msg}}
+<p class="message center bold  {{msg.status}}">{{msg.text}}</p>
+{{/if}}
     <label for="pseudo">Pseudo</label>
-    <input id="pseudo" name="pseudo" type="text" class="input" placeholder="Biceps" required value="gui">
+    <input id="pseudo" name="pseudo" type="text" class="input" placeholder="culture" required value="culture">
 
 
     <label for="email">Email</label>
-    <input id="email" name="email" type="email" class="input" placeholder="albert.biceps@gmail.com" required
-        value="yo@gui.com">
+    <input id="email" name="email" type="email" class="input" placeholder="culture.culture@culture.com" required
+        value="culture@culture.com">
 
-    <label for="password">Password</label>
-    <input id="password" name="password" type="password" class="input" placeholder="••••••" required
-        value="1234">
+    <label for="password">Mot de passe</label>
+    <input id="password" name="password" type="password" class="input" placeholder="••••••" required value="1234">
 
-    <button class="btn">Create Account</button>
+    <button class="btn">Envoyer</button>
     <hr>
-    <p>Already have an account ? <a href="/auth/signin" class="link">Sign In</a></p>
+    <p>Déja un compte ? <a href="/auth/signin"><span class="bold">Connectez-vous !</span></a></p>
 </form>
+

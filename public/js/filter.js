@@ -95,20 +95,21 @@ function myFunction(query = "") {
       listTitles.innerHTML = "";
       const userEventsFav = document.getElementById("userFav").dataset.favoris;
       const userEventsFavArr = userEventsFav.split(",");
-      const userConnexion = document.getElementById("connexion").dataset.connected;
+      const userConnexion = document.getElementById("connexion").dataset
+        .connected;
       console.log(typeof userConnexion);
 
       finalArr.forEach((e) => {
         let li = document.createElement(`li`);
         let isFavorite = false;
         let classFavorite = "far";
-        userEventsFavArr.forEach(userEvent => {
+        userEventsFavArr.forEach((userEvent) => {
           if (userEvent === e.id) {
             isFavorite = true;
             classFavorite = "fas";
           }
-        })
-        console.log("IS FAVORITE", isFavorite);
+        });
+        //console.log("IS FAVORITE", isFavorite);
 
         if (userConnexion === "true") {
           li.innerHTML =
@@ -117,9 +118,9 @@ function myFunction(query = "") {
             "</a>" +
             "<br>" +
             `<img class="img-popup" src=${e.cover_url}>` +
-            "<br>"+
-              `<i data-evt-id="${e.id}" class="img-fav ${classFavorite} fa-heart"></i>`+
-          "<br>" +
+            "<br>" +
+            `<i data-evt-id="${e.id}" class="img-fav ${classFavorite} fa-heart"></i>` +
+            "<br>" +
             "<p>" +
             e.address_name +
             "</p>" +
@@ -229,20 +230,17 @@ inputDate.addEventListener("change", (e) => {
 function changeFavStatus(e) {
   console.log(e);
   if (e.target.classList.contains("far")) {
-    axios.post('/add-favorite', { event: e.target.dataset.evtId })
-      .then(modifiedUser => console.log(modifiedUser))
-      .catch(err => console.log(err))
+    axios
+      .post("/add-favorite", { event: e.target.dataset.evtId })
+      .then((modifiedUser) => console.log(modifiedUser))
+      .catch((err) => console.log(err));
     e.target.classList.replace("far", "fas");
   } else {
-    axios.post('/remove-favorite', { event: e.target.dataset.evtId })
-      .then(modifiedUser => console.log(modifiedUser))
-      .catch(err => console.log(err))
+    axios
+      .post("/remove-favorite", { event: e.target.dataset.evtId })
+      .then((modifiedUser) => console.log(modifiedUser))
+      .catch((err) => console.log(err));
     e.target.classList.replace("fas", "far");
-
   }
   console.log(e.target.dataset.evtId);
 }
-
-
-
-
