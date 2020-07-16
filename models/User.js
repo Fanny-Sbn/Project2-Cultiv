@@ -5,16 +5,15 @@ const userSchema = new Schema({
   pseudo: String,
   email: String,
   password: String,
-  favorites: [{
-    type: Schema.Types.ObjectId,
-  }],
-  address:{
+  fav: [String],
+  pastFav: [String],
+  address: {
     name: String,
     numberOfStreet: Number,
     street: String,
     zip_code: String,
-    city: String
-  }
+    city: String,
+  },
 });
 
 const userModel = mongoose.model("User", userSchema);

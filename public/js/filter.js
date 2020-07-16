@@ -102,6 +102,7 @@ function myFunction(query = "") {
           "<br>" +
           `<img class="img-popup" src=${e.cover_url}>` +
           "<br>" +
+          `<img data-evt-id="${e.id}" class="img-fav" src="../img/1.png">` +
           "<br>" +
           "<p>" +
           e.address_name +
@@ -135,6 +136,12 @@ function myFunction(query = "") {
         };
       });
       loadAllItems(items);
+      let inputFav = document.querySelectorAll(".img-fav");
+      inputFav.forEach((fav) => (fav.onclick = addToFav));
+      function addToFav(e) {
+        console.log(e.target);
+        console.log(e.target.dataset.evtId);
+      }
     })
     .catch((err) => {
       console.log(err);
