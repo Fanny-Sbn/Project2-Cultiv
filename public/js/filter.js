@@ -95,10 +95,25 @@ function myFunction(query = "") {
       listTitles.innerHTML = "";
       finalArr.forEach((e) => {
         let li = document.createElement(`li`);
-        li.innerHTML = e.title;
+        li.innerHTML =
+          `<a href =/evenement/${e.id}>` +
+          e.title +
+          "</a>" +
+          "<br>" +
+          `<img class="img-popup" src=${e.cover_url}>` +
+          "<br>" +
+          "<br>" +
+          "<p>" +
+          e.address_name +
+          "</p>" +
+          "<br>" +
+          "<p>" +
+          e.date_description +
+          "</p>";
+
         listTitles.append(li);
       });
-      console.log("final array", finalArr.length);
+      //console.log("final array", finalArr.length);
       const items = finalArr.map((event) => {
         return {
           type: "Feature",
@@ -158,7 +173,7 @@ allTags.forEach((tags) =>
       let newArr = status.tags.filter((tag) => tag != tags.id);
       status.tags = newArr;
     }
-    console.log(status.tags);
+    //console.log(status.tags);
     checkStatus();
   })
 );
@@ -170,7 +185,7 @@ let inputNow = document.getElementById("now");
 inputDate.addEventListener("change", (e) => {
   status.date = e.target.value;
   inputNow.checked = false;
-  console.log(status.date);
+  // console.log(status.date);
   checkStatus();
   //if (u == true) console.log(now, h[0], h[1], u);
 });

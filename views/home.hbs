@@ -1,5 +1,3 @@
-<div id='map'></div>
-
 <div class="filter">
 
    <div class="quand">
@@ -8,7 +6,6 @@
       <p id="text">Maintenant</p>
       <label for="start">Date:</label>
       <input type="datetime-local" id="start" name="date-choice" class="date">
-
    </div>
 
 
@@ -102,7 +99,15 @@
 
 
 
-<ul id="titles">Titre des événements</ul>
+
+
+<div class="map-container">
+   <div id='map'></div>
+   <div id="loader"><img id="spinner-image" src="../img/spinner.png" alt=""></div>
+</div>
+
+
+<div class="results"><ul id="titles">Titre des événements</ul>
 <ul id="date">Date de l'événement</ul>
 <ul id="lien">Lien vers l'événement</ul>
-<ul id="lien">Ajouter au favoris</ul>
+<ul id="lien">Ajouter au favoris</ul></div>

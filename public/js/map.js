@@ -3,13 +3,13 @@ mapboxgl.accessToken =
 
 var bounds = [
   [2.216371, 48.801412], // Southwest coordinates
-  [2.444264, 48.923045] // Northeast coordinates
+  [2.444264, 48.923045], // Northeast coordinates
 ];
 
 var map = new mapboxgl.Map({
   container: "map",
   style: "mapbox://styles/mapbox/streets-v11",
-  center: [2.351027, 48.855000],//   [longitude,latitude]
+  center: [2.351027, 48.855], //   [longitude,latitude]
   zoom: 6,
   maxBounds: bounds,
 });
@@ -25,7 +25,6 @@ var map = new mapboxgl.Map({
   "bottom-right"
 ); */
 
-
 export function loadAllItems(items) {
   let allPreviousMarkers = document.querySelectorAll(".marker");
   allPreviousMarkers.forEach((marker) => marker.remove());
@@ -39,13 +38,25 @@ export function loadAllItems(items) {
 
     new mapboxgl.Marker(marker_content)
       .setLngLat(marker.geometry.coordinates)
-      .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
-        .setHTML(`<img class="img-popup" src="${marker.properties.img}">` + '<br>' + `<a href ="/evenement/${marker.properties.id}">` + marker.properties.title + '</a>' + '<br>' + '<p>' + marker.properties.place + '</p>' + '<br>' + '<p>' + marker.properties.dateDescription + '</p>'))
+      .setPopup(
+        new mapboxgl.Popup({ offset: 25 }) // add popups
+          .setHTML(
+            `<img class="img-popup" src="${marker.properties.img}">` +
+              "<br>" +
+              `<a href ="/evenement/${marker.properties.id}">` +
+              marker.properties.title +
+              "</a>" +
+              "<br>" +
+              "<p>" +
+              marker.properties.place +
+              "</p>" +
+              "<br>" +
+              "<p>" +
+              marker.properties.dateDescription +
+              "</p>"
+          )
+      )
       .addTo(map);
-    console.log(marker.properties.title)
+    //console.log(marker.properties.title);
   });
-
 }
-
-
-
