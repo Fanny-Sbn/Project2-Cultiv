@@ -38,7 +38,7 @@ function isNow(cleanedOccurences) {
     let isDate = moment(status.date).isBetween(h0, h1);
     if (isNow) u = true;
     if (isDate) v = true;
-    console.log(status.date, v);
+    //console.log(status.date, v);
   });
   return { u, v };
 }

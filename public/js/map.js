@@ -1,10 +1,10 @@
 mapboxgl.accessToken =
   "pk.eyJ1IjoiZmFubnlzYm4iLCJhIjoiY2tjajUxMmRsMWk3cTJzcGJmeWU2dWVxeiJ9.pe-D3UmYaICaW4Cw7BNwMg";
 
-  var bounds = [
-    [2.216371,48.801412], // Southwest coordinates
-    [2.444264,48.923045] // Northeast coordinates
-    ];
+var bounds = [
+  [2.216371, 48.801412], // Southwest coordinates
+  [2.444264, 48.923045] // Northeast coordinates
+];
 
 var map = new mapboxgl.Map({
   container: "map",
@@ -29,17 +29,22 @@ var map = new mapboxgl.Map({
 export function loadAllItems(items) {
   let allPreviousMarkers = document.querySelectorAll(".marker");
   allPreviousMarkers.forEach((marker) => marker.remove());
-   items.forEach((marker) => {
+  var bounds = new mapboxgl.LngLatBounds();
+  items.forEach((marker) => {
     const marker_content = document.createElement("div");
     marker_content.className = "marker";
+
+    bounds.extend(marker.geometry.coordinates);
+    map.fitBounds(bounds, { padding: 50 });
+
     new mapboxgl.Marker(marker_content)
       .setLngLat(marker.geometry.coordinates)
       .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
-      .setHTML(`<img class="img-popup" src="${marker.properties.img}">`+'<br>'+`<a href ="/evenement/${marker.properties.id}">` + marker.properties.title + '</a>'+'<br>'+'<p>'+marker.properties.place+'</p>'+'<br>'+'<p>'+marker.properties.dateDescription+'</p>'))
+        .setHTML(`<img class="img-popup" src="${marker.properties.img}">` + '<br>' + `<a href ="/evenement/${marker.properties.id}">` + marker.properties.title + '</a>' + '<br>' + '<p>' + marker.properties.place + '</p>' + '<br>' + '<p>' + marker.properties.dateDescription + '</p>'))
       .addTo(map);
-      console.log(marker.properties.title) 
+    console.log(marker.properties.title)
   });
-  
+
 }
 
 
