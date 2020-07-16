@@ -20,14 +20,10 @@
 
 <body>
     <header id="header-main">
-        <div class="row space-between">
-            <a href="/" class="logo">Cultiv</a>
-            {{> navMain}}
+        <div class="row">
+            <a href="/" class="title"><img id="logo"src="./img/logo-bleu.png" alt=""> Cultiv</a>
         </div>
-
-        {{#if isAdmin}}
-        {{> navAdmin}}
-        {{/if}}
+        {{> navMain}}
     </header>
 
     

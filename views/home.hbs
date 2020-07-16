@@ -1,114 +1,114 @@
-<div class="filter">
+<div id="wrapper">
+   <div id="userFav" data-favoris={{favoris}}></div>
+   <div id="connexion" data-connected={{connected}}></div>
 
-   <div class="quand">
-      <h1>Quand ? :</h1>
-      <input type="checkbox" id="now" checked>
-      <p id="text">Maintenant</p>
-      <label for="start">Date:</label>
-      <input type="datetime-local" id="start" name="date-choice" class="date">
+
+   <div class="map-container">
+      <div id='map'></div>
+      <div id="loader"><img id="spinner-image" src="../img/spinner.png" alt=""></div>
    </div>
 
 
-   <div class="arrondissements">
-      <h1>Arrondissements :</h1>
-      <input type="checkbox" class="arrondissement" id="75001">
-      <p id="text">Paris 1</p>
-      <input type="checkbox" class="arrondissement" id="75002">
-      <p id="text">Paris 2</p>
-      <input type="checkbox" class="arrondissement" id="75003">
-      <p id="text">Paris 3</p>
-      <input type="checkbox" class="arrondissement" id="75004">
-      <p id="text">Paris 4</p>
-      <input type="checkbox" class="arrondissement" id="75005">
-      <p id="text">Paris 5</p>
-      <input type="checkbox" class="arrondissement" id="75006">
-      <p id="text">Paris 6</p>
-      <input type="checkbox" class="arrondissement" id="75007">
-      <p id="text">Paris 7</p>
-      <input type="checkbox" class="arrondissement" id="75008">
-      <p id="text">Paris 8</p>
-      <input type="checkbox" class="arrondissement" id="75009">
-      <p id="text">Paris 9</p>
-      <input type="checkbox" class="arrondissement" id="75010">
-      <p id="text">Paris 10</p>
-      <input type="checkbox" class="arrondissement" id="75011">
-      <p id="text">Paris 11</p>
-      <input type="checkbox" class="arrondissement" id="75012">
-      <p id="text">Paris 12</p>
-      <input type="checkbox" class="arrondissement" id="75013">
-      <p id="text">Paris 13</p>
-      <input type="checkbox" class="arrondissement" id="75014">
-      <p id="text">Paris 14</p>
-      <input type="checkbox" class="arrondissement" id="75015">
-      <p id="text">Paris 15</p>
-      <input type="checkbox" class="arrondissement" id="75016">
-      <p id="text">Paris 16</p>
-      <input type="checkbox" class="arrondissement" id="75017">
-      <p id="text">Paris 17</p>
-      <input type="checkbox" class="arrondissement" id="75018">
-      <p id="text">Paris 18</p>
-      <input type="checkbox" class="arrondissement" id="75019">
-      <p id="text">Paris 19</p>
-      <input type="checkbox" class="arrondissement" id="75020">
-      <p id="text">Paris 20</p>
+   <div class="results">
+      <ul id="titles">Titre des événements</ul>
    </div>
 
-   <div class="categories">
-      <h1>Catégories :</h1>
+   <div class="filter">
 
-      <input type="checkbox" id="gratuit">
-      <p id="text">Gratuit</p>
+      <div class="quand">
+         <h2>Quand ? :</h2>
+         <input type="checkbox" id="now" checked>
+         <label id="text">Maintenant</label>
+         <label for="start">Date:</label>
+         <input type="datetime-local" id="start" name="date-choice" class="date">
+      </div>
 
-      <input type="checkbox" class="tags" id="cinéma">
-      <p id="text">Cinéma</p>
+
+      <div class="arrondissements">
+         <h2>Arrondissements :</h2>
+         <input type="checkbox" class="arrondissement" id="75001">
+         <label id="text">Paris 1</label>
+         <input type="checkbox" class="arrondissement" id="75002">
+         <label id="text">Paris 2</label>
+         <input type="checkbox" class="arrondissement" id="75003">
+         <label id="text">Paris 3</label>
+         <input type="checkbox" class="arrondissement" id="75004">
+         <label id="text">Paris 4</label>
+         <input type="checkbox" class="arrondissement" id="75005">
+         <label id="text">Paris 5</label>
+         <input type="checkbox" class="arrondissement" id="75006">
+         <label id="text">Paris 6</label>
+         <input type="checkbox" class="arrondissement" id="75007">
+         <label id="text">Paris 7</label>
+         <input type="checkbox" class="arrondissement" id="75008">
+         <label id="text">Paris 8</label>
+         <input type="checkbox" class="arrondissement" id="75009">
+         <label id="text">Paris 9</label>
+         <input type="checkbox" class="arrondissement" id="75010">
+         <label id="text">Paris 10</label>
+         <input type="checkbox" class="arrondissement" id="75011">
+         <label id="text">Paris 11</label>
+         <input type="checkbox" class="arrondissement" id="75012">
+         <label id="text">Paris 12</label>
+         <input type="checkbox" class="arrondissement" id="75013">
+         <label id="text">Paris 13</label>
+         <input type="checkbox" class="arrondissement" id="75014">
+         <label id="text">Paris 14</label>
+         <input type="checkbox" class="arrondissement" id="75015">
+         <label id="text">Paris 15</label>
+         <input type="checkbox" class="arrondissement" id="75016">
+         <label id="text">Paris 16</label>
+         <input type="checkbox" class="arrondissement" id="75017">
+         <label id="text">Paris 17</label>
+         <input type="checkbox" class="arrondissement" id="75018">
+         <label id="text">Paris 18</label>
+         <input type="checkbox" class="arrondissement" id="75019">
+         <label id="text">Paris 19</label>
+         <input type="checkbox" class="arrondissement" id="75020">
+         <label id="text">Paris 20</label>
+      </div>
+
+      <div class="categories">
+         <h2>Catégories :</h2>
+
+         <input type="checkbox" id="gratuit">
+         <label id="text">Gratuit</label>
+
+         <input type="checkbox" class="tags" id="cinéma">
+         <label id="text">Cinéma</label>
 
 
-      <input type="checkbox" class="tags" id="musique">
-      <p id="text">Musique</p>
+         <input type="checkbox" class="tags" id="musique">
+         <label id="text">Musique</label>
 
-      <input type="checkbox" class="tags" id="expos">
-      <p id="text">Expositions</p>
+         <input type="checkbox" class="tags" id="expos">
+         <label id="text">Expositions</label>
 
-      <input type="checkbox" class="tags" id="plein air">
-      <p id="text">Plein air</p>
+         <input type="checkbox" class="tags" id="plein air">
+         <label id="text">Plein air</label>
 
-      <input type="checkbox" class="tags" id="insolite">
-      <p id="text">Insolite</p>
+         <input type="checkbox" class="tags" id="insolite">
+         <label id="text">Insolite</label>
 
-      <input type="checkbox" class="tags" id="sport">
-      <p id="text">Sport</p>
+         <input type="checkbox" class="tags" id="sport">
+         <label id="text">Sport</label>
 
-      <input type="checkbox" class="tags" id="famille">
-      <p id="text">En famille</p>
+         <input type="checkbox" class="tags" id="famille">
+         <label id="text">En famille</label>
 
-      <input type="checkbox" class="tags" id="gourmand">
-      <p id="text">Gourmand</p>
+         <input type="checkbox" class="tags" id="gourmand">
+         <label id="text">Gourmand</label>
 
-      <input type="checkbox" class="tags" id="queer">
-      <p id="text">Queer / LGBT</p>
+         <input type="checkbox" class="tags" id="queer">
+         <label id="text">Queer / LGBT</label>
 
-      <input type="checkbox" class="tags" id="végétalisons">
-      <p id="text">Environnement</p>
+         <input type="checkbox" class="tags" id="végétalisons">
+         <label id="text">Environnement</label>
 
-      <input type="checkbox" class="tags" id="geek">
-      <p id="text">Geek</p>
+         <input type="checkbox" class="tags" id="geek">
+         <label id="text">Geek</label>
+      </div>
+
    </div>
 
 </div>
-
-
-
-<div id="userFav" data-favoris={{favoris}}></div>
-<div id="connexion" data-connected={{connected}}></div>
-
-
-<div class="map-container">
-   <div id='map'></div>
-   <div id="loader"><img id="spinner-image" src="../img/spinner.png" alt=""></div>
-</div>
-
-
-<div class="results"><ul id="titles">Titre des événements</ul>
-<ul id="date">Date de l'événement</ul>
-<ul id="lien">Lien vers l'événement</ul>
-<ul id="lien">Ajouter au favoris</ul></div>
