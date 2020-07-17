@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const userModel = require("./../models/User");
 const bcrypt = require("bcrypt");
-const uploader = require("./../config/cloudinary");
 
 // form views
 

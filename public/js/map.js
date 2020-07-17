@@ -3,13 +3,13 @@ mapboxgl.accessToken =
 
 var bounds = [
   [2.216371, 48.801412], // Southwest coordinates
-  [2.444264, 48.923045] // Northeast coordinates
+  [2.444264, 48.923045], // Northeast coordinates
 ];
 
 var map = new mapboxgl.Map({
   container: "map",
   style: "mapbox://styles/mapbox/streets-v11",
-  center: [2.351027, 48.855000],//   [longitude,latitude]
+  center: [2.351027, 48.855], //   [longitude,latitude]
   zoom: 6,
   maxBounds: bounds,
 });
@@ -24,7 +24,6 @@ map.addControl(new mapboxgl.NavigationControl(), "bottom-right").addControl(
   }),
   "bottom-right"
 );
-
 
 export function loadAllItems(items) {
   let allPreviousMarkers = document.querySelectorAll(".marker");
@@ -64,6 +63,7 @@ export function loadAllItems(items) {
     //console.log(marker.properties.title);
   });
   //enlever le loader
+  // tonelementhtml.remove()
 }
 
 //e.target.dataset.evtId

@@ -77,11 +77,15 @@ margin-top: 20px;
 
 
 #loader {
-  position:relative;
-  width: 100%;
-  height: 100%; 
-  background-color: azure;
-  display:none;
+  position:absolute;
+  top: 0;
+  left:0;
+  right:0;
+  bottom:0;
+  z-index:99;
+  display:flex;
+  justify-content: center;
+  align-items: center;
 }
 
 
@@ -95,6 +99,13 @@ margin-top: 20px;
   width: 1000px;
   height: 700px;
 } */
+
+.map-container{
+  position:relative;
+}
+
+
+
 
 #wrapper-filter-results{
   display: flex;
