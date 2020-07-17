@@ -99,18 +99,22 @@ margin-top: 20px;
 #wrapper-filter-results{
   display: flex;
   flex-direction: column;
+  width: 100%;
+
 }
 
 .results{
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   overflow: auto;
-  max-height: 50%;
-  width: 100%;
+  max-height: 40vh;
+  width: 40vw;
+  padding: 10px;
 }
 
 #titles {
-  background-color: #00c1cc;
+  display: flex;
+  flex-direction: row;
 }
 
 
@@ -124,4 +128,3 @@ label {
   text-align: center;
 
 }
-
