@@ -86,7 +86,31 @@ margin-top: 20px;
   display:flex;
   justify-content: center;
   align-items: center;
+  animation: loader 2s infinite ease;
 }
+
+@keyframes loader {
+  0% {
+    transform: rotate(0deg);
+  }
+  
+  25% {
+    transform: rotate(180deg);
+  }
+  
+  50% {
+    transform: rotate(180deg);
+  }
+  
+  75% {
+    transform: rotate(360deg);
+  }
+  
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 
 
 #spinner-image{
@@ -95,17 +119,9 @@ margin-top: 20px;
 
 }
 
-/* .map-container {
-  width: 1000px;
-  height: 700px;
-} */
-
 .map-container{
   position:relative;
 }
-
-
-
 
 #wrapper-filter-results{
   display: flex;
