@@ -1,7 +1,7 @@
 {
-  "name": "artistify",
+  "name": "cultiv",
   "version": "1.0.0",
-  "description": "a simple app to learn more about CRUD, models relations, ajax",
+  "description": "Project 2 - Ironhack",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
