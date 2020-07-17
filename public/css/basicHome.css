@@ -5,9 +5,11 @@
   /* border:1px solid red; */
 }
 
+/*---GENERAL---*/
 body {
   font-family: "dosis";
   margin: 0 auto;
+  height: 100vh;
 }
 
 ul, ol {
@@ -19,6 +21,15 @@ a {
   color: inherit;
 }
 
+#wrapper {
+  display: grid;
+  grid-template-columns: 70% 5px 1fr;
+  grid-gap: 10px;
+  grid-template-rows: 100vh;
+}
+
+
+/*---HEADER---*/
 .title {
   font-size: 1.3rem;
 }
@@ -27,10 +38,6 @@ a {
  width:60px;
  align-items: flex-end;
 }
-.filter{
-  margin-top: 20px;
-}
-
 
 .title{
   font-size:35px;
@@ -47,6 +54,12 @@ a {
   padding: 5px 10px;
 }
 
+/*---FILTERS---*/
+.filter{
+  margin-top: 20px;
+  grid-column: 3/ 4;
+}
+
 #quand,#arrondissements,#categories{
 margin-top: 20px;
 }
@@ -56,6 +69,7 @@ margin-top: 20px;
   align-items: center;
 }
 
+/*---MAP---*/
 #map{
     width: 100%;
     height: 100%;
@@ -65,8 +79,6 @@ margin-top: 20px;
 
 .marker{
     background: url("../img/2.png");
-   /* background-position: center center;
-    background-repeat: no-repeat;  */
     background-size: cover;
     height: 30px;
     width: 30px;
@@ -104,11 +116,11 @@ margin-top: 20px;
 
 }
 
-.map-container {
+/* .map-container {
   width: 1000px;
   height: 700px;
-}
+} */
 
-.hidden{
-  display:none;
+.results{
+  grid-column:3/1;
 }

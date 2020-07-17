@@ -12,22 +12,6 @@
 .link:hover {
   color: rgb(30, 75, 105);
 }
-/* #nav-admin {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  border-top: 1px solid whitesmoke;
-  padding: 6px 0 2px;
-}
-
-#nav-admin .block {
-  padding: 0 10px;
-  border-left: 1px solid whitesmoke;
-}
-
-#nav-admin .block:last-of-type {
-  border-right: 1px solid whitesmoke;
-} */
 
 @media (max-width: 540px) {
   #nav-admin .block {
