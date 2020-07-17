@@ -10,6 +10,14 @@
   font-weight: 600;
 }
 
+
+.grid-auth {
+  display: grid;
+  height: 90vh;
+  place-items: center;
+}
+
+
 .light {
   font-weight: 300;
 }
