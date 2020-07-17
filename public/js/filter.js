@@ -46,7 +46,7 @@ function isNow(cleanedOccurences) {
 function myFunction(query = "") {
   const res = axios
     .get(
-      `https://opendata.paris.fr/api/records/1.0/search/?dataset=que-faire-a-paris-&q=&rows=20${query}`
+      `https://opendata.paris.fr/api/records/1.0/search/?dataset=que-faire-a-paris-&q=&rows=2000${query}`
     )
     .then((res) => {
       let data = [];

@@ -1,4 +1,4 @@
-//set MONGODB_URI='mongodb://localhost:27017/myLocalDb'
+//
 
 require("dotenv").config();
 require("./config/mongodb");
