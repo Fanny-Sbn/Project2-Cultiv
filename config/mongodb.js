@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 
-mongoose.connect(process.env.MONGO_URI, {
+mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   useCreateIndex: true,
   useUnifiedTopology: true,
-  useFindAndModify: false
+  useFindAndModify: false,
 });
 
 mongoose.connection.on("connected", () =>
@@ -13,4 +13,4 @@ mongoose.connection.on("connected", () =>
 
 mongoose.connection.on("error", () =>
   console.log("Bad news == db connection error :(")
-); 
+);
