@@ -43,11 +43,9 @@ export function loadAllItems(items) {
           .setHTML(
             `<img class="img-popup" src="${marker.properties.img}">` +
               "<br>" +
-              `<a href ="/evenement/${marker.properties.id}">` +
+              `<a class= "link-li" href ="/evenement/${marker.properties.id}">` +
               marker.properties.title +
               "</a>" +
-              "<br>" +
-              `<img data-evt-id="${marker.properties.id}" class="img-fav" src="../img/1.png">` +
               "<br>" +
               "<p>" +
               marker.properties.place +

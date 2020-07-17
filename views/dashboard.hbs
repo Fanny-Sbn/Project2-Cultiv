@@ -1,5 +1,10 @@
+{{#if data}}
+<h1 class="center padding-top">Mes favoris</h1>
+{{else}}
+<h1 class="center padding-top">Vous n'avez pas encore ajouté de favoris</h1>
 
-<h1>Mes favoris</h1>
+{{/if}}
+
 <div id="severalFav">
 {{#each data}}
 <div id="oneFav">

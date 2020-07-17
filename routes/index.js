@@ -34,7 +34,8 @@ router.get("/evenements/mydashboard", protectRoute, (req, res) => {
     .findById(req.session.currentUser._id)
     .then(function (dbRes) {
       let allFav = dbRes.fav;
-      if (!allFav.length) return res.json({ records: [] });
+      // if (!allFav.length) return           res.render("dashboard", { "data: myFavs" });
+      // res.json({ records: [] });
 
       // function updateQuery(arg) {
       //   arg.forEach((e) => {

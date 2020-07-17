@@ -113,7 +113,7 @@ function myFunction(query = "") {
         //console.log("IS FAVORITE", isFavorite);
 
         if (userConnexion === "true") {
-          li.innerHTML = `<a href =/evenement/${e.id}>${e.title}</a>
+          li.innerHTML = `<a class="link-li center" href =/evenement/${e.id}>${e.title}</a>
             <br>
             <img class="img-popup" src=${e.cover_url}>
             <br>
@@ -127,7 +127,7 @@ function myFunction(query = "") {
             ${e.date_description}
             </p>`;
         } else {
-          li.innerHTML = `<a href =/evenement/${e.id}>
+          li.innerHTML = `<a class="link-li center" href =/evenement/${e.id}>
             ${e.title}
             </a>
             <br>

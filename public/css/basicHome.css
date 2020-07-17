@@ -46,10 +46,14 @@ margin-top: 20px;
 
 /*---MAP---*/
 #map{
-    height: 90vh;
+    height: 88vh;
     width: 60vw;
     border-radius: 30px;
     margin-top:10px;
+    margin-left:10px;
+    margin-bottom:10px;
+
+
 }
 
 .marker{
@@ -155,11 +159,24 @@ z-index: 9999;
 
 .arrondissements, .categories, .quand {
 text-align: center;
+padding-bottom: 20px;
 }
 
 label {
   padding-right: 10px;
   padding-left: 10px;
   text-align: center;
+
+}
+
+.padding-top {
+  padding-top: 20px;
+}
+
+
+.mapboxgl-popup-close-button {
+  font-size: 30px;
+  padding-right: 5px;
+  padding-left: 5px;
 
 }
