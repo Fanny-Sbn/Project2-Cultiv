@@ -135,14 +135,14 @@ function myFunction(query = "") {
             "</a>" +
             "<br>" +
             `<img class="img-popup" src=${e.cover_url}>` +
-            "<br>" +
-            "<p>" +
+            "<br>" 
+            /* "<p>" +
             e.address_name +
             "</p>" +
             "<br>" +
             "<p>" +
             e.date_description +
-            "</p>";
+            "</p>"; */
         }
 
         listTitles.append(li);
