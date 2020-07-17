@@ -29,32 +29,58 @@ router.get("/", (req, res) => {
 });
 
 router.get("/evenements/mydashboard", protectRoute, (req, res) => {
-  let query = "";
+  let query = "q=";
   userModel
     .findById(req.session.currentUser._id)
     .then(function (dbRes) {
       let allFav = dbRes.fav;
+      if (!allFav.length) return res.json({ records: [] });
 
-      function updateQuery(arg) {
-        arg.forEach((e) => {
-          let prefix = "&q=";
-          let q = `${prefix}id=${e}`;
-          query += q;
-        });
-      }
-      updateQuery(allFav);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-  axios
-    .get(
-      `https://opendata.paris.fr/api/records/1.0/search/?dataset=que-faire-a-paris-${query}`
-    )
-    .then(function (response) {
-      let data = response.data.records;
-      console.log(data);
-      res.render("dashboard", { data });
+      // function updateQuery(arg) {
+      //   arg.forEach((e) => {
+      //     //let prefix = "&";
+      //     let q = `id=${e}&`;
+      //     query += q;
+      //   });
+      // }
+
+      let promises = allFav.map((fav) =>
+        axios
+          .get(
+            `https://opendata.paris.fr/api/records/1.0/search/?dataset=que-faire-a-paris-&q=id=${fav}`
+          )
+          .catch((error) => console.log(error))
+      );
+
+      Promise.all(promises)
+        .then((apiRes) => {
+          let myFavs = [];
+          apiRes.forEach((data) => {
+            myFavs = [...myFavs, ...data.data.records];
+          });
+          res.render("dashboard", { data: myFavs });
+        })
+        .catch((error) => console.log(error));
+
+      // updateQuery(allFav);
+      // console.log(
+      //   `https://opendata.paris.fr/api/records/1.0/search/?dataset=que-faire-a-paris-&q=&rows=2000`
+      // );
+      // axios
+      //   .get(
+      //     `https://opendata.paris.fr/api/records/1.0/search/?dataset=que-faire-a-paris-&q=&rows=2000`
+      //   )
+      //   .then(function (response) {
+      //     let data = response.data.records;
+      //     const myFavs = data.filter((record) => {
+      //       return allFav.includes(record.fields.id);
+      //     });
+      //     console.log(myFavs.length, allFav.length);
+      //     res.render("dashboard", { data: myFavs });
+      //   })
+      //   .catch(function (error) {
+      //     console.log(error);
+      //   });
     })
     .catch(function (error) {
       console.log(error);

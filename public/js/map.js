@@ -62,6 +62,8 @@ export function loadAllItems(items) {
 
     //console.log(marker.properties.title);
   });
+  let loader = document.getElementById("loader");
+  loader.remove("loader");
   //enlever le loader
   // tonelementhtml.remove()
 }

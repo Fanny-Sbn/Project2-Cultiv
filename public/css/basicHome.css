@@ -149,7 +149,9 @@ margin-top: 20px;
   margin-left: 15px;
   margin-right:15px;
 }
-
+.img-fav {
+z-index: 9999;
+}
 
 .arrondissements, .categories, .quand {
 text-align: center;
