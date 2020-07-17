@@ -1,17 +1,21 @@
 
 <h1>Mes favoris</h1>
+<div id="severalFav">
 {{#each data}}
-<h1>{{this.fields.title}}</h1> 
+<div id="oneFav">
 <img class="image-dashboard" src="{{this.fields.cover_url}}" alt=""></img>
-<p>{{{this.fields.lead_text}}}</p>
-<p>{{{this.fields.date_description}}}</p> 
-<p>{{this.fields.address_name}}</p>
-<p>{{this.fields.address_street}} {{this.fields.address_zipcode}} {{this.fields.address_city}}</p> 
+<h1>{{this.fields.title}}</h1> 
+<p class="marginItem">{{{this.fields.lead_text}}}</p>
+<p class="marginItem" id="date-description">{{{this.fields.date_description}}}</p> 
+<p class="marginItem"><i class="fas fa-map-pin"></i></i>{{this.fields.address_name}}</p>
+<p class="marginItem"><i class="fas fa-map-marker-alt">  </i>{{this.fields.address_street}} {{this.fields.address_zipcode}} {{this.fields.address_city}}</p> 
 {{!-- 
 AJOUTER BOUTON REMOVE
 <a href="/remove-favorite">Retirer de mes favoris :<i class="fas fa-heart"></i></a>
 <a href="/already-done">J'y suis déjà allé !<i class="far fa-hand-peace"></i></a> --}}
+</div>
 {{/each}}
 
+</div>
 
 

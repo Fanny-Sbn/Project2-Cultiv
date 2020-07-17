@@ -1,0 +1,28 @@
+#info-pratiques{
+    background:#00c1cc;
+    max-width:380px;
+    padding:10px;
+    margin:10px;
+    border-radius:10px;
+}
+h1{
+    font-family: "Merienda One";
+}
+#imgEvent{
+    max-width:1100px;
+} 
+
+#content-all{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin:20px 0px 20px;
+}
+
+
+#description-event{
+    font-size: 20px;
+    margin:20px;
+    max-width:1100px
+}
